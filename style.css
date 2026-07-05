@@ -1,0 +1,370 @@
+/* Homework 3 - Bistro Order Form
+    */
+
+:root {
+   --cream: #fbf3e7;
+   --latte: #f0dfc8;
+   --cocoa: #6b4226;
+   --cocoa-soft: #8a5a3a;
+   --sage: #a8b79a;
+   --sage-deep: #6f8261;
+   --blush: #e8a798;
+   --blush-deep: #c96f5c;
+   --caramel: #c68b59;
+   --caramel-deep: #a86a3d;
+   --paper: #fffaf3;
+   --tape: rgba(232, 167, 152, 0.55);
+}
+
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+   background-color: var(--cream);
+   background-image:
+      radial-gradient(circle at 12% 18%, rgba(168, 183, 154, 0.12) 0, transparent 40%),
+      radial-gradient(circle at 88% 8%, rgba(232, 167, 152, 0.15) 0, transparent 35%);
+   color: var(--cocoa);
+   line-height: 1.6;
+}
+
+h1, h2, h3 {
+   font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+   font-weight: 700;
+   color: var(--cocoa);
+}
+
+/*  Header  */
+
+header.site-header {
+   background: linear-gradient(135deg, var(--blush) 0%, var(--caramel) 100%);
+   color: var(--paper);
+   padding: 1.5rem 1.5rem 1.75rem;
+   border-bottom: 4px dashed var(--paper);
+}
+
+.brand {
+   display: flex;
+   align-items: center;
+   gap: 0.6rem;
+   margin-bottom: 1rem;
+}
+
+.brand svg {
+   flex-shrink: 0;
+}
+
+header.site-header h1 {
+   margin: 0;
+   font-size: 2.4rem;
+   color: var(--paper);
+   text-shadow: 1px 1px 0 rgba(107, 66, 38, 0.25);
+}
+
+.tagline {
+   margin: -0.3rem 0 1rem 3.6rem;
+   font-size: 0.95rem;
+   color: var(--paper);
+   opacity: 0.9;
+}
+
+nav.site-nav {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.6rem;
+}
+
+nav.site-nav a {
+   color: var(--paper);
+   text-decoration: none;
+   padding: 0.45rem 1rem;
+   border: 2px dashed rgba(255, 250, 243, 0.7);
+   border-radius: 999px;
+   font-family: "Trebuchet MS", sans-serif;
+   font-weight: 600;
+   font-size: 0.9rem;
+   transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+nav.site-nav a:hover,
+nav.site-nav a:focus {
+   background-color: rgba(255, 250, 243, 0.25);
+   transform: translateY(-2px) rotate(-1deg);
+}
+
+/*  Layout  */
+
+main {
+   max-width: 900px;
+   margin: 0 auto;
+   padding: 2rem 1.5rem 3rem;
+}
+
+h2 {
+   font-size: 1.9rem;
+   position: relative;
+   display: inline-block;
+   margin-bottom: 0.3rem;
+}
+
+h2::after {
+   content: "";
+   display: block;
+   width: 70%;
+   height: 6px;
+   margin-top: 2px;
+   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='8'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5 T60 5 T80 5 T100 5 T120 5' stroke='%23c68b59' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+}
+
+main > p {
+   max-width: 65ch;
+}
+
+/*  Cards  */
+
+.card,
+.insight-card,
+.receipt-card {
+   background-color: var(--paper);
+   border: 2px solid var(--latte);
+   border-radius: 20px;
+   padding: 1.4rem 1.5rem;
+   margin-bottom: 1.5rem;
+   box-shadow: 0 6px 16px rgba(107, 66, 38, 0.08);
+   position: relative;
+}
+
+/* corner accent */
+.card::before,
+.insight-card::before,
+.receipt-card::before {
+   content: "";
+   position: absolute;
+   top: -10px;
+   left: 24px;
+   width: 56px;
+   height: 22px;
+   background-color: var(--tape);
+   border: 1px solid rgba(255, 255, 255, 0.6);
+   transform: rotate(-4deg);
+   border-radius: 2px;
+}
+
+.insight-card {
+   background-color: #fdf1ea;
+   border-color: var(--blush);
+}
+
+.insight-card::before {
+   background-color: rgba(168, 183, 154, 0.55);
+}
+
+.insight-card h3,
+.card h3 {
+   margin-top: 0;
+   font-size: 1.4rem;
+   color: var(--blush-deep);
+}
+
+.insight-note {
+   font-style: italic;
+   color: var(--cocoa-soft);
+}
+
+.pricing-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 1rem;
+   background-color: #f2f6ee;
+   border-color: var(--sage);
+}
+
+.pricing-grid::before {
+   background-color: var(--tape);
+}
+
+.pricing-grid h3 {
+   color: var(--sage-deep);
+}
+
+.full-width-note {
+   grid-column: 1 / -1;
+}
+
+.price-figure {
+   font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+   font-size: 2.1rem;
+   font-weight: 700;
+   color: var(--sage-deep);
+   margin: 0.1rem 0;
+}
+
+/*  Form  */
+
+fieldset {
+   border: 2px dashed var(--caramel);
+   border-radius: 16px;
+   margin-bottom: 1.5rem;
+   padding: 1.1rem 1.2rem;
+   background-color: rgba(255, 250, 243, 0.6);
+}
+
+legend {
+   font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+   font-weight: 700;
+   font-size: 1.3rem;
+   padding: 0 0.6rem;
+   color: var(--caramel-deep);
+}
+
+label {
+   display: block;
+   margin-bottom: 0.4rem;
+   font-weight: 600;
+   color: var(--cocoa-soft);
+}
+
+select {
+   width: 100%;
+   max-width: 320px;
+   padding: 0.6rem 0.8rem;
+   border: 2px solid var(--latte);
+   border-radius: 12px;
+   font-size: 1rem;
+   font-family: "Trebuchet MS", sans-serif;
+   background-color: var(--paper);
+   color: var(--cocoa);
+}
+
+select:focus {
+   outline: 3px solid var(--sage);
+   outline-offset: 1px;
+}
+
+.radio-group {
+   display: flex;
+   gap: 1.5rem;
+   flex-wrap: wrap;
+}
+
+.radio-group label {
+   display: flex;
+   align-items: center;
+   gap: 0.45rem;
+   font-weight: 500;
+   color: var(--cocoa);
+}
+
+input[type="radio"] {
+   accent-color: var(--caramel-deep);
+   width: 18px;
+   height: 18px;
+}
+
+/*  Buttons  */
+
+.btn {
+   display: inline-block;
+   padding: 0.7rem 1.5rem;
+   border: none;
+   border-radius: 999px;
+   font-family: "Trebuchet MS", sans-serif;
+   font-weight: 700;
+   font-size: 1rem;
+   cursor: pointer;
+   text-decoration: none;
+   transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary {
+   background: linear-gradient(135deg, var(--caramel) 0%, var(--blush-deep) 100%);
+   color: var(--paper);
+   box-shadow: 0 4px 10px rgba(198, 139, 89, 0.4);
+}
+
+.btn-primary:hover {
+   transform: translateY(-2px) rotate(-1deg);
+   box-shadow: 0 6px 14px rgba(198, 139, 89, 0.5);
+}
+
+.btn-secondary {
+   background-color: var(--paper);
+   color: var(--cocoa);
+   border: 2px dashed var(--cocoa-soft);
+   margin-left: 0.75rem;
+}
+
+.btn-secondary:hover {
+   background-color: var(--latte);
+   transform: translateY(-2px) rotate(1deg);
+}
+
+.actions {
+   margin-top: 1rem;
+}
+
+/*  Receipt & snapshot  */
+
+.receipt-card {
+   font-size: 1.15rem;
+   border-color: var(--sage);
+}
+
+.receipt-card::before {
+   background-color: var(--tape);
+}
+
+.snapshot-list {
+   list-style: none;
+   padding-left: 0;
+}
+
+.snapshot-list li {
+   padding: 0.3rem 0;
+   border-bottom: 1px dashed var(--latte);
+}
+
+.snapshot-list li:last-child {
+   border-bottom: none;
+}
+
+/*  Footer  */
+
+footer.site-footer {
+   text-align: center;
+   padding: 1.5rem;
+   font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+   font-size: 1.1rem;
+   color: var(--cocoa-soft);
+}
+
+/*  Accessibility  */
+
+a:focus-visible,
+button:focus-visible {
+   outline: 3px solid var(--sage-deep);
+   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   * {
+      transition: none !important;
+   }
+}
+
+@media (max-width: 600px) {
+   header.site-header h1 {
+      font-size: 1.9rem;
+   }
+
+   .tagline {
+      margin-left: 0;
+   }
+
+   .pricing-grid {
+      grid-template-columns: 1fr;
+   }
+}
